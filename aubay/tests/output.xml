@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1 (Python 3.12.2 on darwin)" generated="2024-10-17T23:33:10.664827" rpa="false" schemaversion="5">
+<suite id="s1" name="Test E2E Checkout" source="/Users/dayanebahia/aubay/tests/test_e2e_checkout.robot">
+<test id="s1-t1" name="product_type" line="24">
+<kw name="Test Successful Checkout Flow">
+<kw name="Create List" owner="BuiltIn">
+<msg time="2024-10-17T23:33:10.776025" level="INFO">${CART_ADDED_PRODUCTS_LIST} = []</msg>
+<var>${CART_ADDED_PRODUCTS_LIST}</var>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2024-10-17T23:33:10.775953" elapsed="0.000088"/>
+</kw>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2024-10-17T23:33:10.776347" level="INFO">${CART_EXPECTED_PRODUCTS_LIST} = []</msg>
+<var>${CART_EXPECTED_PRODUCTS_LIST}</var>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2024-10-17T23:33:10.776291" elapsed="0.000068"/>
+</kw>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2024-10-17T23:33:10.776455" level="INFO">${INDICES} = []</msg>
+<var>${INDICES}</var>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2024-10-17T23:33:10.776413" elapsed="0.000052"/>
+</kw>
+<kw name="Launch Browser And Navigate To Homepage" owner="resource">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:10.776828" level="WARN">exexcutable_path is being deprecated. Please use service to configure the driver's executable_path as per documentation.</msg>
+<msg time="2024-10-17T23:33:10.776877" level="INFO">Opening browser 'Chrome' to base url 'http://automationexercise.com'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>Chrome</arg>
+<arg>executable_path=${CHROME_DRIVER_PATH}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-10-17T23:33:10.776708" elapsed="2.808831"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-10-17T23:33:13.586076" elapsed="0.386975"/>
+</kw>
+<status status="PASS" start="2024-10-17T23:33:10.776529" elapsed="3.196720"/>
+</kw>
+<kw name="Accept Consent Dialog" owner="LandingPage">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${consent_button}</arg>
+<arg>${consent_wait_time}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-17T23:33:13.973910" elapsed="0.016524"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:13.990724" level="INFO">Clicking button 'xpath=//button[contains(@class, 'fc-primary-button')]'.</msg>
+<arg>${consent_button}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:13.990578" elapsed="0.065610"/>
+</kw>
+<status status="PASS" start="2024-10-17T23:33:13.973541" elapsed="0.082739"/>
+</kw>
+<kw name="Navigate To Products Page" owner="BasePage">
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:14.056825" level="INFO">Clicking link '/products'.</msg>
+<arg>${products_page_link}</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:14.056599" elapsed="2.770213"/>
+</kw>
+<status status="PASS" start="2024-10-17T23:33:14.056423" elapsed="2.770471"/>
+</kw>
+<kw name="Search For Product" owner="ProductsPage">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:16.827346" level="INFO">Typing text 'shirts' into text field 'id:search_product'.</msg>
+<arg>${product_search_field}</arg>
+<arg>${products}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:16.827213" elapsed="0.139621"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:16.967136" level="INFO">Clicking button 'id:submit_search'.</msg>
+<arg>${submit_search_button}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:16.966981" elapsed="1.380174"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${items_list}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.347314" elapsed="0.026075"/>
+</kw>
+<arg>${products}</arg>
+<doc>Searches for a product by name and waits until results are displayed.</doc>
+<status status="PASS" start="2024-10-17T23:33:16.827021" elapsed="1.547124"/>
+</kw>
+<kw name="Add Products To Cart" owner="ProductsPage">
+<kw name="Verify Number Of Elements" owner="ProductsPage">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:18.389269" level="INFO">Element 'css:.features_items' is displayed.</msg>
+<arg>${items_list}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.375680" elapsed="0.013652"/>
+</kw>
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:18.400632" level="INFO">${elements} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="70621f8cd5cdfc8ac1672828f41ab50b", element="f.7C5C6E9E1FA8FF5DF981B1D31A5C1D57.d.FFA73B5B7A9DA0C5F9AE654ACE5087B3.e.427")&gt;, &lt;selenium.webdri...</msg>
+<var>${elements}</var>
+<arg>${single_product_info}</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.389472" elapsed="0.011195"/>
+</kw>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2024-10-17T23:33:18.401031" level="INFO">Length is 13.</msg>
+<msg time="2024-10-17T23:33:18.401599" level="INFO">${element_count} = 13</msg>
+<var>${element_count}</var>
+<arg>${elements}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.400807" elapsed="0.000834"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Product element count: ${element_count}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.403989" elapsed="0.009379"/>
+</kw>
+<return>
+<value>${element_count}</value>
+<status status="PASS" start="2024-10-17T23:33:18.413454" elapsed="0.002529"/>
+</return>
+<msg time="2024-10-17T23:33:18.417828" level="INFO">${element_count} = 13</msg>
+<var>${element_count}</var>
+<doc>Logs and returns the count of product items visible on the page.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.375372" elapsed="0.042514"/>
+</kw>
+<for flavor="IN RANGE">
+<iter>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-10-17T23:33:18.419216" level="INFO">${i} = 12</msg>
+<var>${i}</var>
+<arg>random.randint(1, int(${element_count}))</arg>
+<arg>modules=random</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.418918" elapsed="0.000316"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-10-17T23:33:18.420214" level="INFO">${js_selector} = .features_items .col-sm-4:nth-of-type(12) .add-to-cart</msg>
+<var>${js_selector}</var>
+<arg>${add_to_cart_js_selector.replace('{i}', str(${i}))}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.419426" elapsed="0.000860"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:18.425701" level="INFO">Executing JavaScript:
+document.querySelector(".features_items .col-sm-4:nth-of-type(12) .add-to-cart").click()
+Without any arguments.</msg>
+<arg>document.querySelector("${js_selector}").click()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.420462" elapsed="0.012160"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${continue_shopping_button}</arg>
+<arg>5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.432759" elapsed="0.228791"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:18.661805" level="INFO">Clicking button 'xpath=//button[contains(text(), 'Continue Shopping')]'.</msg>
+<arg>${continue_shopping_button}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.661674" elapsed="0.024814"/>
+</kw>
+<kw name="Get Product Price" owner="ProductsPage">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-10-17T23:33:18.687203" level="INFO">${js_selector} = .features_items .col-sm-4:nth-of-type(12) .single-products .overlay-content h2</msg>
+<var>${js_selector}</var>
+<arg>${product_price_selector_js.replace("{i}", str(${i}))}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.686837" elapsed="0.000382"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:18.687504" level="INFO">Executing JavaScript:
+var priceElement = document.querySelector('.features_items .col-sm-4:nth-of-type(12) .single-products .overlay-content h2'); return priceElement ? priceElement.innerText : null
+Without any arguments.</msg>
+<msg time="2024-10-17T23:33:18.689924" level="INFO">${price} = Rs. 1500</msg>
+<var>${price}</var>
+<arg>var priceElement = document.querySelector('${js_selector}'); return priceElement ? priceElement.innerText : null</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.687290" elapsed="0.002655"/>
+</kw>
+<return>
+<value>${price}</value>
+<status status="PASS" start="2024-10-17T23:33:18.689996" elapsed="0.000032"/>
+</return>
+<msg time="2024-10-17T23:33:18.690107" level="INFO">${price} = Rs. 1500</msg>
+<var>${price}</var>
+<arg>${i}</arg>
+<doc>Retrieves the price of a product by its index.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.686649" elapsed="0.003470"/>
+</kw>
+<kw name="Get Product Name" owner="ProductsPage">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-10-17T23:33:18.690725" level="INFO">${js_selector} = .features_items .col-sm-4:nth-of-type(12) .single-products .overlay-content p</msg>
+<var>${js_selector}</var>
+<arg>${product_name_selector_js.replace("{i}", str(${i}))}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.690388" elapsed="0.000350"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:18.691135" level="INFO">Executing JavaScript:
+var productElement = document.querySelector('.features_items .col-sm-4:nth-of-type(12) .single-products .overlay-content p'); return productElement ? productElement.innerText : null
+Without any arguments.</msg>
+<msg time="2024-10-17T23:33:18.693223" level="INFO">${product} = Premium Polo T-Shirts</msg>
+<var>${product}</var>
+<arg>var productElement = document.querySelector('${js_selector}'); return productElement ? productElement.innerText : null</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.690806" elapsed="0.002437"/>
+</kw>
+<return>
+<value>${product}</value>
+<status status="PASS" start="2024-10-17T23:33:18.693288" elapsed="0.000027"/>
+</return>
+<msg time="2024-10-17T23:33:18.693381" level="INFO">${product} = Premium Polo T-Shirts</msg>
+<var>${product}</var>
+<arg>${i}</arg>
+<doc>Retrieves the name of a product by its index.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.690221" elapsed="0.003170"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-10-17T23:33:18.693563" level="INFO">${product_price} = Premium Polo T-Shirts: Rs. 1500</msg>
+<var>${product_price}</var>
+<arg>${product}: ${price}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.693475" elapsed="0.000099"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${CART_ADDED_PRODUCTS_LIST}</arg>
+<arg>${product_price}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.693628" elapsed="0.000063"/>
+</kw>
+<var name="${n}">0</var>
+<status status="PASS" start="2024-10-17T23:33:18.418810" elapsed="0.274901"/>
+</iter>
+<iter>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-10-17T23:33:18.693980" level="INFO">${i} = 6</msg>
+<var>${i}</var>
+<arg>random.randint(1, int(${element_count}))</arg>
+<arg>modules=random</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.693840" elapsed="0.000152"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-10-17T23:33:18.694658" level="INFO">${js_selector} = .features_items .col-sm-4:nth-of-type(6) .add-to-cart</msg>
+<var>${js_selector}</var>
+<arg>${add_to_cart_js_selector.replace('{i}', str(${i}))}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.694047" elapsed="0.000628"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:18.695431" level="INFO">Executing JavaScript:
+document.querySelector(".features_items .col-sm-4:nth-of-type(6) .add-to-cart").click()
+Without any arguments.</msg>
+<arg>document.querySelector("${js_selector}").click()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.695049" elapsed="0.003382"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${continue_shopping_button}</arg>
+<arg>5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.698554" elapsed="0.213449"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:18.912258" level="INFO">Clicking button 'xpath=//button[contains(text(), 'Continue Shopping')]'.</msg>
+<arg>${continue_shopping_button}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.912129" elapsed="0.023274"/>
+</kw>
+<kw name="Get Product Price" owner="ProductsPage">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-10-17T23:33:18.936328" level="INFO">${js_selector} = .features_items .col-sm-4:nth-of-type(6) .single-products .overlay-content h2</msg>
+<var>${js_selector}</var>
+<arg>${product_price_selector_js.replace("{i}", str(${i}))}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.935835" elapsed="0.000513"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:18.936769" level="INFO">Executing JavaScript:
+var priceElement = document.querySelector('.features_items .col-sm-4:nth-of-type(6) .single-products .overlay-content h2'); return priceElement ? priceElement.innerText : null
+Without any arguments.</msg>
+<msg time="2024-10-17T23:33:18.939151" level="INFO">${price} = Rs. 679</msg>
+<var>${price}</var>
+<arg>var priceElement = document.querySelector('${js_selector}'); return priceElement ? priceElement.innerText : null</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.936455" elapsed="0.002717"/>
+</kw>
+<return>
+<value>${price}</value>
+<status status="PASS" start="2024-10-17T23:33:18.939219" elapsed="0.000028"/>
+</return>
+<msg time="2024-10-17T23:33:18.939317" level="INFO">${price} = Rs. 679</msg>
+<var>${price}</var>
+<arg>${i}</arg>
+<doc>Retrieves the price of a product by its index.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.935587" elapsed="0.003747"/>
+</kw>
+<kw name="Get Product Name" owner="ProductsPage">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-10-17T23:33:18.940287" level="INFO">${js_selector} = .features_items .col-sm-4:nth-of-type(6) .single-products .overlay-content p</msg>
+<var>${js_selector}</var>
+<arg>${product_name_selector_js.replace("{i}", str(${i}))}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.939613" elapsed="0.000688"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:18.940703" level="INFO">Executing JavaScript:
+var productElement = document.querySelector('.features_items .col-sm-4:nth-of-type(6) .single-products .overlay-content p'); return productElement ? productElement.innerText : null
+Without any arguments.</msg>
+<msg time="2024-10-17T23:33:18.942972" level="INFO">${product} = Full Sleeves Top Cherry - Pink</msg>
+<var>${product}</var>
+<arg>var productElement = document.querySelector('${js_selector}'); return productElement ? productElement.innerText : null</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.940443" elapsed="0.002549"/>
+</kw>
+<return>
+<value>${product}</value>
+<status status="PASS" start="2024-10-17T23:33:18.943043" elapsed="0.000027"/>
+</return>
+<msg time="2024-10-17T23:33:18.943139" level="INFO">${product} = Full Sleeves Top Cherry - Pink</msg>
+<var>${product}</var>
+<arg>${i}</arg>
+<doc>Retrieves the name of a product by its index.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.939458" elapsed="0.003692"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-10-17T23:33:18.943349" level="INFO">${product_price} = Full Sleeves Top Cherry - Pink: Rs. 679</msg>
+<var>${product_price}</var>
+<arg>${product}: ${price}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.943242" elapsed="0.000122"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${CART_ADDED_PRODUCTS_LIST}</arg>
+<arg>${product_price}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.943429" elapsed="0.000070"/>
+</kw>
+<var name="${n}">1</var>
+<status status="PASS" start="2024-10-17T23:33:18.693790" elapsed="0.249731"/>
+</iter>
+<var>${n}</var>
+<value>2</value>
+<status status="PASS" start="2024-10-17T23:33:18.418352" elapsed="0.525217"/>
+</for>
+<arg>${CART_ADDED_PRODUCTS_LIST}</arg>
+<status status="PASS" start="2024-10-17T23:33:18.375125" elapsed="0.568494"/>
+</kw>
+<kw name="Navigate To Cart Page" owner="BasePage">
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:18.944194" level="INFO">Clicking link '/view_cart'.</msg>
+<arg>${cart_page_link}</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:18.944032" elapsed="0.905612"/>
+</kw>
+<status status="PASS" start="2024-10-17T23:33:18.943726" elapsed="0.906025"/>
+</kw>
+<kw name="Verify Products" owner="CartPage">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-10-17T23:33:19.850321" level="INFO">${unique_products} = {'Premium Polo T-Shirts: Rs. 1500', 'Full Sleeves Top Cherry - Pink: Rs. 679'}</msg>
+<var>${unique_products}</var>
+<arg>set(${CART_ADDED_PRODUCTS_LIST})</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-10-17T23:33:19.850151" elapsed="0.000186"/>
+</kw>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2024-10-17T23:33:19.850475" level="INFO">Length is 2.</msg>
+<msg time="2024-10-17T23:33:19.850516" level="INFO">${product_count} = 2</msg>
+<var>${product_count}</var>
+<arg>${unique_products}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2024-10-17T23:33:19.850403" elapsed="0.000124"/>
+</kw>
+<for flavor="IN RANGE">
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:19.865322" level="INFO">${product} = Premium Polo T-Shirts</msg>
+<var>${product}</var>
+<arg>${cart_product_name.replace('{index}', str(${index} + 1))}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:19.850725" elapsed="0.014628"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:19.881086" level="INFO">${price} = Rs. 1500</msg>
+<var>${price}</var>
+<arg>${cart_product_price.replace('{index}', str(${index} + 1))}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:19.865521" elapsed="0.015602"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-10-17T23:33:19.881408" level="INFO">${product_price} = Premium Polo T-Shirts: Rs. 1500</msg>
+<var>${product_price}</var>
+<arg>${product}: ${price}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-10-17T23:33:19.881246" elapsed="0.000182"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${CART_EXPECTED_PRODUCTS_LIST}</arg>
+<arg>${product_price}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-10-17T23:33:19.881526" elapsed="0.000122"/>
+</kw>
+<var name="${index}">0</var>
+<status status="PASS" start="2024-10-17T23:33:19.850666" elapsed="0.031037"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:19.892768" level="INFO">${product} = Full Sleeves Top Cherry - Pink</msg>
+<var>${product}</var>
+<arg>${cart_product_name.replace('{index}', str(${index} + 1))}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:19.882028" elapsed="0.010765"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:19.929866" level="INFO">${price} = Rs. 679</msg>
+<var>${price}</var>
+<arg>${cart_product_price.replace('{index}', str(${index} + 1))}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:19.892906" elapsed="0.036986"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-10-17T23:33:19.930127" level="INFO">${product_price} = Full Sleeves Top Cherry - Pink: Rs. 679</msg>
+<var>${product_price}</var>
+<arg>${product}: ${price}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-10-17T23:33:19.930014" elapsed="0.000125"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${CART_EXPECTED_PRODUCTS_LIST}</arg>
+<arg>${product_price}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-10-17T23:33:19.930198" elapsed="0.000064"/>
+</kw>
+<var name="${index}">1</var>
+<status status="PASS" start="2024-10-17T23:33:19.881849" elapsed="0.048433"/>
+</iter>
+<var>${index}</var>
+<value>0</value>
+<value>${product_count}</value>
+<status status="PASS" start="2024-10-17T23:33:19.850565" elapsed="0.079747"/>
+</for>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${CART_EXPECTED_PRODUCTS_LIST}</arg>
+<arg>${CART_ADDED_PRODUCTS_LIST}</arg>
+<arg>Cart values do not match expected</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-10-17T23:33:19.930430" elapsed="0.000192"/>
+</kw>
+<arg>${CART_ADDED_PRODUCTS_LIST}</arg>
+<arg>${CART_EXPECTED_PRODUCTS_LIST}</arg>
+<status status="PASS" start="2024-10-17T23:33:19.849922" elapsed="0.080759"/>
+</kw>
+<kw name="Proceed To Checkout Before Login" owner="CartPage">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:19.931071" level="INFO">Clicking element 'css=a.btn.btn-default.check_out'.</msg>
+<arg>css=a.btn.btn-default.check_out</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:19.930984" elapsed="0.025744"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>css=a[href='/login']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-17T23:33:19.956886" elapsed="0.010213"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:19.967569" level="INFO">Executing JavaScript:
+document.querySelector("a[href='/login']").click()
+Without any arguments.</msg>
+<arg>document.querySelector("a[href='/login']").click()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:19.967251" elapsed="0.614558"/>
+</kw>
+<status status="PASS" start="2024-10-17T23:33:19.930807" elapsed="0.651192"/>
+</kw>
+<kw name="Login" owner="LoginPage">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:20.582423" level="INFO">Typing text 'autexercise@email.com' into text field 'css=input[data-qa="login-email"]'.</msg>
+<arg>${login_email_field}</arg>
+<arg>${user_email}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:20.582307" elapsed="0.039202"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:20.621855" level="INFO">Typing text 'testpass' into text field 'css=input[data-qa="login-password"]'.</msg>
+<arg>${login_password_field}</arg>
+<arg>${user_password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:20.621660" elapsed="0.062900"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:20.685367" level="INFO">Clicking button 'css=button[data-qa="login-button"]'.</msg>
+<arg>${login_button}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:20.685052" elapsed="0.965110"/>
+</kw>
+<status status="PASS" start="2024-10-17T23:33:20.582148" elapsed="1.068124"/>
+</kw>
+<kw name="Verify Login Success" owner="BasePage">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${login_success_username}</arg>
+<arg>${wait_time}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-17T23:33:21.650624" elapsed="0.009459"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-10-17T23:33:21.660417" level="INFO">${expected_username} = autexercise</msg>
+<var>${expected_username}</var>
+<arg>'${EMAIL}'.split('@')[0]</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-10-17T23:33:21.660227" elapsed="0.000207"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:21.668104" level="INFO">${displayed_username} = autexercise</msg>
+<var>${displayed_username}</var>
+<arg>${login_success_username}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:21.660502" elapsed="0.007628"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${displayed_username}</arg>
+<arg>${expected_username}</arg>
+<arg>The displayed username does not match the expected username</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-10-17T23:33:21.668242" elapsed="0.000163"/>
+</kw>
+<status status="PASS" start="2024-10-17T23:33:21.650462" elapsed="0.017983"/>
+</kw>
+<kw name="Navigate To Cart Page" owner="BasePage">
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:21.668825" level="INFO">Clicking link '/view_cart'.</msg>
+<arg>${cart_page_link}</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:21.668727" elapsed="0.743582"/>
+</kw>
+<status status="PASS" start="2024-10-17T23:33:21.668582" elapsed="0.743796"/>
+</kw>
+<kw name="Proceed To Checkout After Login" owner="CartPage">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:22.412839" level="INFO">Clicking element 'css=a.btn.btn-default.check_out'.</msg>
+<arg>${checkout_button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:22.412671" elapsed="1.209114"/>
+</kw>
+<status status="PASS" start="2024-10-17T23:33:22.412487" elapsed="1.209367"/>
+</kw>
+<kw name="Place Order" owner="CheckoutPage">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:23.622355" level="INFO">Executing JavaScript:
+document.querySelector("a[href='/payment']").scrollIntoView()
+Without any arguments.</msg>
+<arg>document.querySelector("${payment_link_js_selector}").scrollIntoView()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:23.622122" elapsed="0.014828"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:23.637979" level="INFO">Executing JavaScript:
+document.querySelector("iframe[id^='aswift']").style.display = 'none'
+Without any arguments.</msg>
+<arg>document.querySelector("${ad_iframe_js_selector}").style.display = 'none'</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:23.637593" elapsed="0.003186"/>
+</kw>
+<arg>Execute JavaScript</arg>
+<arg>document.querySelector("${ad_iframe_js_selector}").style.display = 'none'</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2024-10-17T23:33:23.637204" elapsed="0.003720"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${place_order_button}</arg>
+<arg>${wait_time}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-17T23:33:23.641036" elapsed="0.008226"/>
+</kw>
+<kw name="Wait Until Element Is Enabled" owner="SeleniumLibrary">
+<arg>${place_order_button}</arg>
+<arg>${wait_time}</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" start="2024-10-17T23:33:23.649389" elapsed="0.010399"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:23.660043" level="INFO">Clicking element 'css=a.btn.btn-default.check_out'.</msg>
+<arg>${place_order_button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:23.659909" elapsed="0.867425"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${name_on_card_field}</arg>
+<arg>${wait_time}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-17T23:33:24.527466" elapsed="0.011001"/>
+</kw>
+<status status="PASS" start="2024-10-17T23:33:23.621979" elapsed="0.916558"/>
+</kw>
+<kw name="Confirm Payment" owner="PaymentPage">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:24.539155" level="INFO">Executing JavaScript:
+document.querySelector("input[data-qa='name-on-card']").value = 'Dayane Lima';
+Without any arguments.</msg>
+<arg>document.querySelector("${card_name_input}").value = '${card_name}';</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:24.538888" elapsed="0.002982"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:24.542400" level="INFO">Executing JavaScript:
+document.querySelector("input[data-qa='card-number']").value = '5123456879516523';
+Without any arguments.</msg>
+<arg>document.querySelector("${card_number_input}").value = '${card_number}';</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:24.542027" elapsed="0.005139"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:24.547569" level="INFO">Executing JavaScript:
+document.querySelector("input[data-qa='cvc']").value = '311';
+Without any arguments.</msg>
+<arg>document.querySelector("${cvc_input}").value = '${cvc}';</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:24.547291" elapsed="0.002542"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:24.550210" level="INFO">Executing JavaScript:
+document.querySelector("input[data-qa='expiry-month']").value = '01';
+Without any arguments.</msg>
+<arg>document.querySelector("${expiry_month_input}").value = '${expiry_month}';</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:24.549948" elapsed="0.003314"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:24.555429" level="INFO">Executing JavaScript:
+document.querySelector("input[data-qa='expiry-year']").value = '2031';
+Without any arguments.</msg>
+<arg>document.querySelector("${expiry_year_input}").value = '${expiry_year}';</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:24.553639" elapsed="0.004745"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:24.559256" level="INFO">Clicking element 'id=submit'.</msg>
+<arg>${submit_button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:24.558748" elapsed="1.769941"/>
+</kw>
+<status status="PASS" start="2024-10-17T23:33:24.538726" elapsed="1.790055"/>
+</kw>
+<kw name="Check if your order has been confirmed" owner="PaymentConfirmationPage">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${order_confirmed_message_xpath}</arg>
+<arg>5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-10-17T23:33:26.329149" elapsed="0.010896"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:26.348076" level="INFO">${success_message} = ORDER PLACED!</msg>
+<var>${success_message}</var>
+<arg>${order_confirmed_message_xpath}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-10-17T23:33:26.340182" elapsed="0.007920"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${success_message}</arg>
+<arg>${expected_success_message}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-10-17T23:33:26.348217" elapsed="0.000133"/>
+</kw>
+<status status="PASS" start="2024-10-17T23:33:26.328936" elapsed="0.019453"/>
+</kw>
+<kw name="Clear Browser Session" owner="resource" type="TEARDOWN">
+<kw name="Delete All Cookies" owner="SeleniumLibrary">
+<doc>Deletes all cookies.</doc>
+<status status="PASS" start="2024-10-17T23:33:26.348659" elapsed="0.012941"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:26.361926" level="INFO">Executing JavaScript:
+window.localStorage.clear()
+Without any arguments.</msg>
+<arg>window.localStorage.clear()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:26.361719" elapsed="0.002211"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2024-10-17T23:33:26.364254" level="INFO">Executing JavaScript:
+window.sessionStorage.clear()
+Without any arguments.</msg>
+<arg>window.sessionStorage.clear()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2024-10-17T23:33:26.364030" elapsed="0.002439"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-10-17T23:33:26.366570" elapsed="0.123557"/>
+</kw>
+<status status="PASS" start="2024-10-17T23:33:26.348511" elapsed="0.141699"/>
+</kw>
+<arg>shirts</arg>
+<status status="PASS" start="2024-10-17T23:33:10.775489" elapsed="15.714756"/>
+</kw>
+<status status="PASS" start="2024-10-17T23:33:10.775179" elapsed="15.715244"/>
+</test>
+<doc>E2E checkout test for the Automation Exercise website.</doc>
+<status status="PASS" start="2024-10-17T23:33:10.665509" elapsed="15.825181"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Test E2E Checkout">Test E2E Checkout</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-10-17T23:33:10.776828" level="WARN">exexcutable_path is being deprecated. Please use service to configure the driver's executable_path as per documentation.</msg>
+</errors>
+</robot>
